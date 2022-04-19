@@ -102,8 +102,7 @@ async def play(websocket, game, player, connected):
                 "type": "win",
                 "player": player,
             }
-            for connected_player in connected:
-                await connected_player.send(json.dumps(event))
+            websockets.broadcast(connected, json.dumps(event))
 
 
 async def replay(websocket, game):
